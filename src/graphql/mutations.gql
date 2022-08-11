@@ -1,0 +1,55 @@
+import gql from 'graphql-tag'
+
+/*  ========================
+    ========= USER =========
+    ======================== */
+export const ADD_USER = gql`
+  mutation addUser($name: String!, $email: String!) {
+    insert_users_one(object: { name: $name, email: $email }) {
+      id
+      name
+      email
+    }
+  }
+`
+export const UPDATE_USER = gql`
+  mutation updateUser($name: String!, $email: String!, $id: Int!) {
+    update_users_by_pk(
+      pk_columns: { id: $id }
+      _set: { name: $name, email: $email }
+    ) {
+      id
+      name
+      email
+    }
+  }
+`
+export const DELETE_USER = gql`
+  mutation deleteUser($id: Int!) {
+    delete_users_by_pk(id: $id) {
+      id
+    }
+  }
+`
+
+/*  ========================
+    ======= PRODUCTS =======
+    ======================== */
+
+export const ADD_PRODUCT = gql`
+mutation addProduct(
+    $title: String!,
+    $price: Int!,
+    $description: String!,
+    $user_id: Int!
+    ){
+        insert_products_one(object: {
+            title: $title,
+            price: $price,
+            description: $description,
+            user_id: $user_id
+         }){
+            id
+         }
+    }
+`
